@@ -35,3 +35,9 @@ If you want to follow along with the log output, you can run it as interractive 
 docker run --rm -it --name ark-server 7778:7778/udp -p 27015:27015/udp -v /host/folder/path:/ark ark-game-server
 ```
 Note the `--rm` part in above command, will make the container delete itself the moment you exit it.
+
+## Build system
+Whenever an update to the repositorys main branch happens, the container is automaticly being built and made ready by Docker Hub.
+
+This is the Docker hub website adress:  
+https://hub.docker.com/r/jacobpeddk/ark-server-tools/
