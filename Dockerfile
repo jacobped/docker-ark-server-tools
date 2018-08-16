@@ -29,9 +29,8 @@ RUN apt-get update -y && apt-get install -y \
     lsof \
     libc6-i386 \
     lib32gcc1 \
-    bzip2
-
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    bzip2 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Enable passwordless sudo for users under the "sudo" group
 RUN sed -i.bkp -e \
