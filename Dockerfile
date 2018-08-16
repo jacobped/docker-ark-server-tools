@@ -5,8 +5,14 @@
 
 FROM debian:stable-slim
 
-MAINTAINER Jacob Pedersen <jacob@jacobpedersen.dk>
-LABEL maintainer="jacob@jacobpedersen.dk"
+ARG BUILD_DATE
+ARG VCS_REF
+
+MAINTAINER jacobpeddk
+LABEL maintainer="jacobpeddk"
+LABEL org.label-schema.build-date=$BUILD_DATE
+LABEL org.label-schema.vcs-url="https://github.com/jacobped/docker-ark-server-tools"
+LABEL org.label-schema.vcs-ref=$VCS_REF
 
 ENV REPOSITORY "jacobped/ark-server-tools"
 ENV GIT_TAG v1.6.41
