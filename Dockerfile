@@ -40,15 +40,15 @@ RUN apt-get update -y && apt-get install -y \
 
 # Enable passwordless sudo for users under the "sudo" group
 RUN sed -i.bkp -e \
-	's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers \
-	/etc/sudoers
+    's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers \
+    /etc/sudoers
 
 # Create steam user
 RUN adduser \ 
-	--disabled-login \ 
-	--shell /bin/bash \ 
-	--gecos "" \ 
-	steam
+    --disabled-login \ 
+    --shell /bin/bash \ 
+    --gecos "" \ 
+    steam
 
 # Add steam user to sudo group
 RUN usermod -a -G sudo steam
