@@ -1,6 +1,13 @@
 # docker-ark-server-tools
 Docker container for hosting a ARK: Survival Evolved server, with ark-server-tools for management
 
+### Docker Image
+[![Docker Pulls](https://img.shields.io/docker/pulls/jacobpeddk/ark-server-tools.svg)](https://hub.docker.com/r/jacobpeddk/ark-server-tools)
+[![Docker Stars](https://img.shields.io/docker/stars/jacobpeddk/ark-server-tools.svg)](https://hub.docker.com/r/jacobpeddk/ark-server-tools)
+[![](https://images.microbadger.com/badges/image/jacobpeddk/ark-server-tools.svg)](https://microbadger.com/images/jacobpeddk/ark-server-tools "Container Image size and layers")
+[![](https://images.microbadger.com/badges/commit/jacobpeddk/ark-server-tools.svg)](https://microbadger.com/images/jacobpeddk/ark-server-tools "Current commit that the container is build from")
+[![](https://images.microbadger.com/badges/version/jacobpeddk/ark-server-tools.svg)](https://microbadger.com/images/jacobpeddk/ark-server-tools "Container version")
+
 ## Run
 Run the container with the following command.
 Remember to change the host path, to fit where you want it to store its data on the host machine.
