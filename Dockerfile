@@ -3,7 +3,7 @@
 # With ark-server-tools for management
 ############################################################
 
-FROM debian:stable-slim
+FROM debian:9-slim
 
 ARG BUILD_DATE
 ARG VCS_REF
