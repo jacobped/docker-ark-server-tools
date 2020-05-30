@@ -12,7 +12,7 @@ Docker container for hosting a ARK: Survival Evolved server, with ark-server-too
 Run the container with the following command.
 Remember to change the host path, to fit where you want it to store its data on the host machine.
 ```
-docker run -d --name ark-server 7778:7778/udp -p 27015:27015/udp -v /host/folder/path:/ark jacobpeddk/ark-server-tools:latest
+docker run -d --name ark-server -p 7778:7778/udp -p 27015:27015/udp -v /host/folder/path:/ark jacobpeddk/ark-server-tools:latest
 ```
 
 And then to interract with it.
@@ -34,12 +34,12 @@ Now it's just:
 
 ### Example:
 ```
-docker run -d --name ark-server 7778:7778/udp -p 27015:27015/udp -v /host/folder/path:/ark ark-game-server
+docker run -d --name ark-server -p 7778:7778/udp -p 27015:27015/udp -v /host/folder/path:/ark ark-game-server
 ```
 
 If you want to follow along with the log output, you can run it as interractive with `-it` instead of `-d`:
 ```
-docker run --rm -it --name ark-server 7778:7778/udp -p 27015:27015/udp -v /host/folder/path:/ark ark-game-server
+docker run --rm -it --name ark-server -p 7778:7778/udp -p 27015:27015/udp -v /host/folder/path:/ark ark-game-server
 ```
 Note the `--rm` part in above command, will make the container delete itself the moment you exit it.
 
