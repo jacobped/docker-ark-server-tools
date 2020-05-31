@@ -3,7 +3,8 @@
 # With ark-server-tools for management
 ############################################################
 
-FROM debian:9-slim
+# FROM debian:9-slim
+FROM cm2network/steamcmd:latest
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -13,6 +14,8 @@ LABEL maintainer="jacobpeddk"
 LABEL org.label-schema.build-date=$BUILD_DATE
 LABEL org.label-schema.vcs-url="https://github.com/jacobped/docker-ark-server-tools"
 LABEL org.label-schema.vcs-ref=$VCS_REF
+
+USER root
 
 ENV REPOSITORY="jacobped/ark-server-tools" \
     GIT_TAG=v1.6.41 \
@@ -41,30 +44,19 @@ RUN apt-get update -y && apt-get install -y \
 RUN sed -i.bkp -e \
     's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers \
     /etc/sudoers && \
-    # Create steam user
-    adduser \ 
-    --disabled-login \ 
-    --shell /bin/bash \ 
-    --gecos "" \ 
-    steam && \
     # Add steam user to sudo group
-    usermod -a -G sudo steam
-
-# Install steamcmd
-USER steam
-WORKDIR /home/steam/
-
-RUN mkdir steamcmd ark-server-tools-install && \
-    curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar -C steamcmd -zxvf -
-
-WORKDIR /home/steam/ark-server-tools-install
+    usermod -a -G sudo steam &&\
+    mkdir -p /home/steam/ark-server-tools-install &&\
+    chown -R steam:steam /home/steam
 
 # Install ark-server-tools
+USER steam
+WORKDIR /home/steam/ark-server-tools-install
+
 RUN git clone --no-checkout https://github.com/${REPOSITORY}.git /home/steam/ark-server-tools-install/git && \
     git -C /home/steam/ark-server-tools-install/git reset --hard $GIT_TAG && \
     cp -R git/tools/* ./ && \
     rm -fR git && \
-    ls -lah && pwd && \
     chmod +x install.sh && \
     sudo ./install.sh steam && \
     rm -fr /home/steam/ark-server-tools-install && \

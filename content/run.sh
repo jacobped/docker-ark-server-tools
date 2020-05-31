@@ -10,7 +10,8 @@ echo Running setup script
 
 doPrepareFolders() {
     # Make sure steam user owns specific folders
-    sudo chown -R steam:steam /ark /home/steam /etc/arkmanager
+    # sudo chown -R steam:steam /ark /home/steam /etc/arkmanager
+    sudo chown -R steam:steam /ark /etc/arkmanager
 
     cd /ark
 
