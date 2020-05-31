@@ -37,8 +37,17 @@ RUN apt-get update -y && apt-get install -y \
     lsof \
     libc6-i386 \
     lib32gcc1 \
-    bzip2 && \
+    bzip2 \
+    locales && \
+    sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen && \
+    apt-get autoremove -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Set the locale
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 # Enable passwordless sudo for users under the "sudo" group
 RUN sed -i.bkp -e \

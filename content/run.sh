@@ -10,8 +10,8 @@ echo Running setup script
 
 doPrepareFolders() {
     # Make sure steam user owns specific folders
-    # sudo chown -R steam:steam /ark /home/steam /etc/arkmanager
-    sudo chown -R steam:steam /ark /etc/arkmanager
+    sudo chown -R steam:steam /ark /home/steam /etc/arkmanager
+    # sudo chown -R steam:steam /ark /etc/arkmanager
 
     cd /ark
 
@@ -27,6 +27,7 @@ doPrepareFolders() {
     if [ ! -d /ark/logs ]; then
         mkdir /ark/logs # && cp -r /ark-scripts/arkmanager/* /ark/configs/
         mkdir /ark/logs/arktools
+        mkdir /ark/logs/steam
     fi
 }
 
@@ -36,13 +37,14 @@ doPrepareFolders() {
 
 doMapArkmanagerConfigs() {
     echo "Using configs from mapped /ark directory"
-    ln -s /ark/configs/arkmanager.cfg /etc/arkmanager/arkmanager.cfg
-    ln -s /ark/configs/instances/ /etc/arkmanager/instances
+    sudo ln -s /ark/configs/arkmanager.cfg /etc/arkmanager/arkmanager.cfg
+    sudo ln -s /ark/configs/instances/ /etc/arkmanager/instances
+    sudo ln -s /home/steam/Steam/logs /ark/logs/steam
 }
 
 doInstallGameServers() {
     echo "No game files found. Installing..."
-	${arkmanager} install @all
+	${arkmanager} install @all --verbose
 }
 
 doCheckServers() {
@@ -62,10 +64,11 @@ doCheckServers() {
 
 doStart() {
     echo "Starting"
-    ${arkmanager} start @all
+    ${arkmanager} start @all --verbose
 }
 
 stop() {
+    echo "Saving worlds and shutting down.."
     ${arkmanager} stop --saveworld
 	exit
 }
