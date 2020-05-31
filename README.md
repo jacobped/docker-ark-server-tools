@@ -25,7 +25,7 @@ docker exec -it ark-server bin/bash
 open terminal and cd to the folder where you've cloned the repository to.
 Then run the following command:
 ```
-docker build -t ark-game-server -f Dockerfile .
+docker build --pull -t ark-game-server -f Dockerfile .
 ```
 Afterwards you can run it just like up in the Run section. But instead of the layer name being:  
 `jacobpeddk/ark-server-tools:latest`  
